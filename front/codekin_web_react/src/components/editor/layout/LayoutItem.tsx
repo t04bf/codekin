@@ -1,0 +1,187 @@
+// Migrated from Magic Resume; see THIRD_PARTY_NOTICES.md; adapted for Codekin React.
+
+import { motion, Reorder, useDragControls } from "framer-motion";
+import { Eye, EyeOff, GripVertical, Trash2 } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { MenuSection } from "@/types/resume";
+import { useTranslations } from "@/i18n/compat/client";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+
+interface LayoutItemProps {
+  item: MenuSection;
+  isBasic?: boolean;
+  activeSection: string;
+  setActiveSection: (id: string) => void;
+  toggleSectionVisibility: (id: string) => void;
+  updateMenuSections: (sections: MenuSection[]) => void;
+  removeSection: (sectionId: string) => void;
+  menuSections: MenuSection[];
+}
+
+const LayoutItem = ({
+  item,
+  isBasic = false,
+  activeSection,
+  setActiveSection,
+  toggleSectionVisibility,
+  updateMenuSections,
+  removeSection,
+  menuSections
+}: LayoutItemProps) => {
+  const dragControls = useDragControls();
+  const t = useTranslations("common");
+
+  if (isBasic) {
+    return (
+      <div
+        className={cn(
+          "rounded-lg group border mb-2",
+          "bg-card border-border",
+          "hover:border-primary/50 transition-colors",
+          activeSection === item.id &&
+          "border-primary text-primary ring-1 ring-primary"
+        )}
+        onClick={() => setActiveSection(item.id)}
+        role="button"
+        tabIndex={0}
+        aria-label={`编辑${item.title}`}
+        onKeyDown={event => { if (event.target === event.currentTarget && (event.key === 'Enter' || event.key === ' ')) { event.preventDefault(); setActiveSection(item.id); } }}
+      >
+        <div className="flex items-center p-3 pl-[32px] space-x-3">
+          <span
+            className={cn(
+              "text-lg  ml-[12px]",
+              "text-muted-foreground group-hover:text-foreground transition-colors"
+            )}
+          >
+            {item.icon}
+          </span>
+          <span className={cn("text-sm flex-1 cursor-pointer")}>
+            {item.title}
+          </span>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <Reorder.Item
+      id={item.id}
+      value={item}
+      dragListener={false}
+      dragControls={dragControls}
+      className={cn(
+        "rounded-lg group border flex overflow-hidden ",
+        "bg-card border-border",
+        "hover:border-primary/50 transition-colors",
+        activeSection === item.id &&
+        "border-primary text-primary ring-1 ring-primary"
+      )}
+      whileHover={{ scale: 1.01 }}
+      whileDrag={{ scale: 1.02 }}
+    >
+      <div
+        onPointerDown={(event) => {
+          dragControls.start(event);
+        }}
+        className={cn(
+          "w-8 flex items-center justify-center  touch-none shrink-0",
+          "border-border",
+          "cursor-grab hover:bg-muted/50"
+        )}
+      >
+        <GripVertical
+          className={cn(
+            "w-4 h-4",
+            "text-muted-foreground",
+            "transform transition-transform group-hover:scale-110"
+          )}
+        />
+      </div>
+
+      <div
+        className="flex select-none items-center p-3 space-x-3 flex-1  cursor-pointer"
+      >
+        <div className="flex flex-1 items-center">
+          <span
+            className={cn(
+              "text-lg mr-2",
+              "text-muted-foreground group-hover:text-foreground transition-colors"
+            )}
+          >
+            {item.icon}
+          </span>
+          <button type="button" className="flex flex-1 items-center text-left" aria-label={`编辑${item.title}`} onClick={() => setActiveSection(item.id)}><span className="text-sm flex-1">{item.title}</span></button>
+          <motion.button
+            aria-label={`${item.enabled ? '隐藏' : '显示'}${item.title}`}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={(e) => {
+              e.stopPropagation();
+              toggleSectionVisibility(item.id);
+            }}
+            className={cn(
+              "p-1.5 rounded-md mr-2",
+              "hover:bg-muted text-muted-foreground hover:text-foreground transition-colors"
+            )}
+          >
+            {item.enabled ? (
+              <Eye className="w-4 h-4 text-primary" />
+            ) : (
+              <EyeOff className="w-4 h-4" />
+            )}
+          </motion.button>
+
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <motion.button
+                aria-label={`移除${item.title}模块`}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={(e) => e.stopPropagation()}
+                className={cn(
+                  "p-1.5 rounded-md text-primary",
+                  "hover:bg-destructive/10 text-muted-foreground hover:text-destructive transition-colors"
+                )}
+              >
+                <Trash2 className="w-4 h-4 text-red-400" />
+              </motion.button>
+            </AlertDialogTrigger>
+            <AlertDialogContent onClick={(e) => e.stopPropagation()}>
+              <AlertDialogHeader>
+                <AlertDialogTitle>{t("delete")} {item.title}</AlertDialogTitle>
+                <AlertDialogDescription>
+                  {t("deleteModuleConfirm")}
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel onClick={(e) => e.stopPropagation()}>{t("cancel")}</AlertDialogCancel>
+                <AlertDialogAction
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    removeSection(item.id);
+                  }}
+                  className="bg-linear-to-r from-rose-500 to-orange-400 hover:from-rose-600 hover:to-orange-500 text-white shadow-xs border-0"
+                >
+                  {t("confirm")}
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        </div>
+      </div>
+    </Reorder.Item>
+  );
+};
+
+export default LayoutItem;

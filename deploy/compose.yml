@@ -1,0 +1,113 @@
+name: codekin
+
+services:
+  mysql:
+    image: mysql:8.4.11
+    container_name: codekin-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${CODEKIN_DEV_PASSWORD:-Wcb123123}
+      MYSQL_DATABASE: codekin
+      MYSQL_USER: codekin
+      MYSQL_PASSWORD: ${CODEKIN_DEV_PASSWORD:-Wcb123123}
+      TZ: Asia/Shanghai
+    command: ["mysqld", "--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci"]
+    ports:
+      - "127.0.0.1:3306:3306"
+    volumes:
+      - ../.data/mysql:/var/lib/mysql
+      - ./deploy.sql:/docker-entrypoint-initdb.d/01-codekin.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "MYSQL_PWD=$$MYSQL_PASSWORD mysql --protocol=tcp -h 127.0.0.1 -u codekin -D codekin -e 'SELECT 1' >/dev/null"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  redis:
+    image: redis:7.4.11
+    container_name: codekin-redis
+    environment:
+      REDIS_PASSWORD: ${CODEKIN_DEV_PASSWORD:-Wcb123123}
+    command: ["sh", "-c", "exec redis-server --appendonly yes --requirepass \"$$REDIS_PASSWORD\""]
+    ports:
+      - "127.0.0.1:6379:6379"
+    volumes:
+      - ../.data/redis:/data
+    healthcheck:
+      test: ["CMD-SHELL", "REDISCLI_AUTH=$$REDIS_PASSWORD redis-cli ping | grep -q PONG"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  seaweedfs:
+    image: chrislusf/seaweedfs:4.47
+    container_name: codekin-seaweedfs
+    environment:
+      # 配置凭据后启用 S3 签名鉴权；不使用无凭据的 Allow All 模式。
+      AWS_ACCESS_KEY_ID: ${CODEKIN_STORAGE_ACCESS_KEY:-codekin}
+      AWS_SECRET_ACCESS_KEY: ${CODEKIN_STORAGE_SECRET_KEY:-${CODEKIN_DEV_PASSWORD:-Wcb123123}}
+      S3_BUCKET: ${CODEKIN_STORAGE_BUCKET:-codekin}
+      WEED_ADMIN_USER: ${CODEKIN_SEAWEEDFS_ADMIN_USER:-codekin}
+      WEED_ADMIN_PASSWORD: ${CODEKIN_SEAWEEDFS_ADMIN_PASSWORD:-${CODEKIN_DEV_PASSWORD:-Wcb123123}}
+      TZ: Asia/Shanghai
+    command:
+      - mini
+      - -dir=/data
+      - -ip=seaweedfs
+      - -ip.bind=0.0.0.0
+      - -admin.dataDir=/data/admin
+      - -master.telemetry=false
+      - -webdav=false
+      - -s3.port.iceberg=0
+      - -s3.port.lance=0
+    ports:
+      - "127.0.0.1:8333:8333"
+      - "127.0.0.1:23646:23646"
+    volumes:
+      - ../.data/seaweedfs:/data
+    healthcheck:
+      test: ["CMD-SHELL", "curl --fail --silent --show-error --max-time 5 http://127.0.0.1:8333/readyz >/dev/null && curl --fail --silent --show-error --max-time 5 http://127.0.0.1:23646/health >/dev/null"]
+      interval: 10s
+      timeout: 15s
+      start_period: 60s
+      retries: 12
+    stop_grace_period: 30s
+    restart: unless-stopped
+
+  nacos:
+    image: nacos/nacos-server:v3.2.4-slim
+    container_name: codekin-nacos
+    environment:
+      MODE: standalone
+      NACOS_AUTH_ENABLE: "true"
+      NACOS_AUTH_ADMIN_ENABLE: "true"
+      NACOS_AUTH_CONSOLE_ENABLE: "true"
+      NACOS_AUTH_SYSTEM_TYPE: nacos
+      NACOS_AUTH_TOKEN: ${CODEKIN_NACOS_AUTH_TOKEN:?set a unique Base64 secret of at least 32 bytes}
+      NACOS_AUTH_IDENTITY_KEY: ${CODEKIN_NACOS_IDENTITY_KEY:?set a unique identity key}
+      NACOS_AUTH_IDENTITY_VALUE: ${CODEKIN_NACOS_IDENTITY_VALUE:?set a unique identity value}
+      JVM_XMS: 512m
+      JVM_XMX: 512m
+      JVM_XMN: 256m
+    ports:
+      - "127.0.0.1:8848:8848"
+      - "127.0.0.1:9848:9848"
+      - "127.0.0.1:8082:8080"
+    volumes:
+      - ../.data/nacos/data:/home/nacos/data
+      - ../.data/nacos/logs:/home/nacos/logs
+    restart: unless-stopped
+
+  nacos-init:
+    image: curlimages/curl:8.16.0
+    container_name: codekin-nacos-init
+    depends_on:
+      - nacos
+    environment:
+      NACOS_ADMIN_PASSWORD: ${CODEKIN_DEV_PASSWORD:-Wcb123123}
+    volumes:
+      - ./nacos-init.sh:/scripts/nacos-init.sh:ro
+      - ./nacos-config:/config:ro
+    entrypoint: ["/bin/sh", "/scripts/nacos-init.sh"]
+    restart: "no"

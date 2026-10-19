@@ -1,0 +1,35 @@
+# Nacos Data ID: codekin-gateway.yml; Group: CODEKIN; 类型: YAML。
+server:
+  port: ${CODEKIN_GATEWAY_PORT:8080}
+  # 始终保留 TCP 对端地址，由网关自己的可信代理规则解析客户端 IP。
+  forward-headers-strategy: none
+
+codekin:
+  gateway:
+    client-ip:
+      mode: ${CODEKIN_GATEWAY_CLIENT_IP_MODE:DIRECT}
+      trusted-proxies: ${CODEKIN_GATEWAY_TRUSTED_PROXY_CIDRS:}
+
+spring:
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: codekin-file
+              uri: lb://codekin-file
+              predicates:
+                - Path=/api/files/**
+            - id: codekin-user-auth
+              uri: lb://codekin-user
+              predicates:
+                - Path=/api/auth/**
+            - id: codekin-resume
+              uri: lb://codekin-resume
+              order: -10
+              predicates:
+                - Path=/api/users/me/resumes,/api/users/me/resumes/**
+            - id: codekin-user-profile
+              uri: lb://codekin-user
+              predicates:
+                - Path=/api/users/**

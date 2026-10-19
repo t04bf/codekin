@@ -1,0 +1,35 @@
+:root {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+  color: #213b32;
+  background: #f5f6f2;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  --ck-forest: #24513f;
+  --ck-forest-deep: #183e30;
+  --ck-text: #213b32;
+  --ck-muted: #6c7d72;
+  --ck-line: #dfe8de;
+  --ck-orange: #ee7a39;
+  --ck-cream: #fffdfa;
+  --ck-surface: #fff;
+  --ck-background: #f5f6f2;
+  --ck-soft: #edf3e9;
+  --el-color-primary: #24513f;
+  --el-color-primary-light-3: #4f7562;
+  --el-color-primary-light-5: #83a18e;
+  --el-color-primary-light-7: #b8cdbb;
+  --el-color-primary-light-9: #eff5ee;
+  --el-color-primary-dark-2: #183e30;
+  --el-border-radius-base: 12px;
+  --el-border-radius-small: 12px;
+  --el-text-color-primary: #213b32;
+  --el-text-color-regular: #455c52;
+  --el-text-color-secondary: #6c7d72;
+}
+
+* { box-sizing: border-box; }
+html, body, #app { min-width: 320px; min-height: 100%; margin: 0; }
+
+/* 品牌透明图片使用透明底；只覆盖组件主题变量。 */
+.el-avatar { --el-avatar-bg-color: transparent; }

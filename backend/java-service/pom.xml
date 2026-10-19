@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>4.1.1</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>org.ninestick.codekin</groupId>
+    <artifactId>codekin</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>codekin_common</module>
+        <module>codekin_gateway</module>
+        <module>codekin_module</module>
+    </modules>
+
+    <properties>
+        <java.version>26</java.version>
+        <maven.compiler.release>${java.version}</maven.compiler.release>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <spring-cloud.version>2025.1.3</spring-cloud.version>
+        <spring-cloud-alibaba.version>2025.1.0.0</spring-cloud-alibaba.version>
+        <mybatis-plus.version>3.5.17</mybatis-plus.version>
+        <lombok.version>1.18.48</lombok.version>
+        <aliyun-dypnsapi-async.version>2.0.0</aliyun-dypnsapi-async.version>
+        <transmittable-thread-local.version>2.14.5</transmittable-thread-local.version>
+        <tianai-captcha.version>1.5.5</tianai-captcha.version>
+        <dubbo.version>3.3.6</dubbo.version>
+        <minio-sdk.version>9.0.3</minio-sdk.version>
+        <twelvemonkeys.version>3.15.2</twelvemonkeys.version>
+        <json-schema-validator.version>3.0.8</json-schema-validator.version>
+        <jsoup.version>1.23.2</jsoup.version>
+        <playwright.version>1.63.0</playwright.version>
+        <pdfbox.version>3.0.8</pdfbox.version>
+        <tika.version>3.3.3</tika.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency><groupId>org.apache.tika</groupId><artifactId>tika-core</artifactId><version>${tika.version}</version></dependency>
+            <dependency><groupId>org.apache.tika</groupId><artifactId>tika-parser-pdf-module</artifactId><version>${tika.version}</version></dependency>
+            <dependency><groupId>org.apache.tika</groupId><artifactId>tika-parser-microsoft-module</artifactId><version>${tika.version}</version></dependency>
+            <dependency><groupId>com.microsoft.playwright</groupId><artifactId>playwright</artifactId><version>${playwright.version}</version></dependency>
+            <dependency><groupId>org.apache.pdfbox</groupId><artifactId>pdfbox</artifactId><version>${pdfbox.version}</version></dependency>
+            <dependency><groupId>com.networknt</groupId><artifactId>json-schema-validator</artifactId><version>${json-schema-validator.version}</version></dependency>
+            <dependency><groupId>org.jsoup</groupId><artifactId>jsoup</artifactId><version>${jsoup.version}</version></dependency>
+            <!-- Dubbo 完整 BOM 还管理旧 Spring；这里只管理所用 Dubbo 组件，Spring 由 Boot 管理。 -->
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-spring-boot-starter</artifactId>
+                <version>${dubbo.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-nacos-spring-boot-starter</artifactId>
+                <version>${dubbo.version}</version>
+            </dependency>
+            <!-- S3 SDK 提供 POST Policy 签名，适用于 SeaweedFS，无需自行实现签名算法。 -->
+            <dependency>
+                <groupId>io.minio</groupId>
+                <artifactId>minio</artifactId>
+                <version>${minio-sdk.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.twelvemonkeys.imageio</groupId>
+                <artifactId>imageio-webp</artifactId>
+                <version>${twelvemonkeys.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cloud.tianai.captcha</groupId>
+                <artifactId>tianai-captcha-springboot-starter</artifactId>
+                <version>${tianai-captcha.version}</version>
+            </dependency>
+            <!-- Spring Boot parent manages its starters, Jackson, MySQL driver and Lombok. -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-bom</artifactId>
+                <version>${mybatis-plus.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.aliyun</groupId>
+                <artifactId>alibabacloud-dypnsapi20170525</artifactId>
+                <version>${aliyun-dypnsapi-async.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>transmittable-thread-local</artifactId>
+                <version>${transmittable-thread-local.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <parameters>true</parameters>
+                        <!-- JDK 23+ does not discover annotation processors by default. -->
+                        <annotationProcessorPaths>
+                            <path>
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok</artifactId>
+                                <version>${lombok.version}</version>
+                            </path>
+                        </annotationProcessorPaths>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>

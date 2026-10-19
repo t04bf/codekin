@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: codekin-resume
+  config:
+    import:
+      - "nacos:codekin-common.yml?group=CODEKIN&refreshEnabled=false"
+      - "nacos:codekin-resume.yml?group=CODEKIN&refreshEnabled=false"
+  cloud:
+    nacos:
+      server-addr: ${CODEKIN_NACOS_SERVER_ADDR:localhost:8848}
+      username: ${CODEKIN_NACOS_USERNAME:nacos}
+      password: ${CODEKIN_NACOS_PASSWORD}

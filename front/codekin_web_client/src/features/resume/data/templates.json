@@ -1,0 +1,412 @@
+[
+  {
+    "id": "910000000000000001",
+    "templateKey": "classic",
+    "templateVersion": 1,
+    "schemaVersion": 1,
+    "name": "经典模板",
+    "description": "传统简约的简历布局，适合大多数求职场景",
+    "status": "PUBLISHED",
+    "sortOrder": 10,
+    "defaultLayout": {
+      "themeColor": "#000000",
+      "textColor": "#212529",
+      "secondaryColor": "#4b5563",
+      "backgroundColor": "#ffffff",
+      "fontKey": "sans",
+      "baseFontSize": 14,
+      "lineHeight": 1.6,
+      "pagePadding": 32,
+      "sectionSpacing": 16,
+      "paragraphSpacing": 12,
+      "sectionTitleSpacing": 12,
+      "headerSize": 18,
+      "subheaderSize": 16,
+      "basicAlignment": "left",
+      "photo": {
+        "visible": true,
+        "width": 90,
+        "height": 120,
+        "borderRadius": 0
+      },
+      "columns": [
+        {
+          "id": "main",
+          "sectionIds": [
+            "skills",
+            "experience",
+            "projects",
+            "education",
+            "selfEvaluation",
+            "certificates"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "910000000000000002",
+    "templateKey": "modern",
+    "templateVersion": 1,
+    "schemaVersion": 1,
+    "name": "两栏布局",
+    "description": "经典两栏，突出个人特色",
+    "status": "PUBLISHED",
+    "sortOrder": 20,
+    "defaultLayout": {
+      "themeColor": "#000000",
+      "textColor": "#212529",
+      "secondaryColor": "#6b7280",
+      "backgroundColor": "#ffffff",
+      "fontKey": "sans",
+      "baseFontSize": 14,
+      "lineHeight": 1.6,
+      "pagePadding": 0,
+      "sectionSpacing": 8,
+      "paragraphSpacing": 4,
+      "sectionTitleSpacing": 12,
+      "headerSize": 18,
+      "subheaderSize": 16,
+      "basicAlignment": "center",
+      "photo": {
+        "visible": true,
+        "width": 90,
+        "height": 120,
+        "borderRadius": 0
+      },
+      "columns": [
+        {
+          "id": "sidebar",
+          "sectionIds": [
+            "education"
+          ]
+        },
+        {
+          "id": "main",
+          "sectionIds": [
+            "skills",
+            "experience",
+            "projects",
+            "selfEvaluation",
+            "certificates"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "910000000000000003",
+    "templateKey": "left-right",
+    "templateVersion": 1,
+    "schemaVersion": 1,
+    "name": "模块标题背景色",
+    "description": "模块标题背景鲜明，突出美观特色",
+    "status": "PUBLISHED",
+    "sortOrder": 30,
+    "defaultLayout": {
+      "themeColor": "#000000",
+      "textColor": "#212529",
+      "secondaryColor": "#9ca3af",
+      "backgroundColor": "#ffffff",
+      "fontKey": "sans",
+      "baseFontSize": 14,
+      "lineHeight": 1.6,
+      "pagePadding": 32,
+      "sectionSpacing": 24,
+      "paragraphSpacing": 16,
+      "sectionTitleSpacing": 12,
+      "headerSize": 18,
+      "subheaderSize": 16,
+      "basicAlignment": "left",
+      "photo": {
+        "visible": true,
+        "width": 90,
+        "height": 120,
+        "borderRadius": 0
+      },
+      "columns": [
+        {
+          "id": "main",
+          "sectionIds": [
+            "skills",
+            "experience",
+            "projects",
+            "education",
+            "selfEvaluation",
+            "certificates"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "910000000000000004",
+    "templateKey": "timeline",
+    "templateVersion": 1,
+    "schemaVersion": 1,
+    "name": "时间线风格",
+    "description": "时间线布局，突出经历的时间顺序",
+    "status": "PUBLISHED",
+    "sortOrder": 40,
+    "defaultLayout": {
+      "themeColor": "#18181b",
+      "textColor": "#212529",
+      "secondaryColor": "#64748b",
+      "backgroundColor": "#ffffff",
+      "fontKey": "sans",
+      "baseFontSize": 14,
+      "lineHeight": 1.6,
+      "pagePadding": 24,
+      "sectionSpacing": 1,
+      "paragraphSpacing": 12,
+      "sectionTitleSpacing": 12,
+      "headerSize": 18,
+      "subheaderSize": 16,
+      "basicAlignment": "left",
+      "photo": {
+        "visible": true,
+        "width": 90,
+        "height": 120,
+        "borderRadius": 0
+      },
+      "columns": [
+        {
+          "id": "main",
+          "sectionIds": [
+            "skills",
+            "experience",
+            "projects",
+            "education",
+            "selfEvaluation",
+            "certificates"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "910000000000000005",
+    "templateKey": "minimalist",
+    "templateVersion": 1,
+    "schemaVersion": 1,
+    "name": "极简模板",
+    "description": "大面积留白，干净纯粹的排版风格",
+    "status": "PUBLISHED",
+    "sortOrder": 50,
+    "defaultLayout": {
+      "themeColor": "#171717",
+      "textColor": "#171717",
+      "secondaryColor": "#737373",
+      "backgroundColor": "#ffffff",
+      "fontKey": "sans",
+      "baseFontSize": 14,
+      "lineHeight": 1.6,
+      "pagePadding": 40,
+      "sectionSpacing": 32,
+      "paragraphSpacing": 24,
+      "sectionTitleSpacing": 12,
+      "headerSize": 18,
+      "subheaderSize": 16,
+      "basicAlignment": "center",
+      "photo": {
+        "visible": true,
+        "width": 90,
+        "height": 120,
+        "borderRadius": 0
+      },
+      "columns": [
+        {
+          "id": "main",
+          "sectionIds": [
+            "skills",
+            "experience",
+            "projects",
+            "education",
+            "selfEvaluation",
+            "certificates"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "910000000000000006",
+    "templateKey": "elegant",
+    "templateVersion": 1,
+    "schemaVersion": 1,
+    "name": "优雅模板",
+    "description": "居中标题单列设计，具有高级感的分隔线",
+    "status": "PUBLISHED",
+    "sortOrder": 60,
+    "defaultLayout": {
+      "themeColor": "#18181b",
+      "textColor": "#27272a",
+      "secondaryColor": "#71717a",
+      "backgroundColor": "#ffffff",
+      "fontKey": "sans",
+      "baseFontSize": 14,
+      "lineHeight": 1.6,
+      "pagePadding": 32,
+      "sectionSpacing": 28,
+      "paragraphSpacing": 18,
+      "sectionTitleSpacing": 12,
+      "headerSize": 18,
+      "subheaderSize": 16,
+      "basicAlignment": "center",
+      "photo": {
+        "visible": true,
+        "width": 90,
+        "height": 120,
+        "borderRadius": 0
+      },
+      "columns": [
+        {
+          "id": "main",
+          "sectionIds": [
+            "skills",
+            "experience",
+            "projects",
+            "education",
+            "selfEvaluation",
+            "certificates"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "910000000000000007",
+    "templateKey": "creative",
+    "templateVersion": 1,
+    "schemaVersion": 1,
+    "name": "创意模板",
+    "description": "视觉错落设计，灵动活泼展现个性",
+    "status": "PUBLISHED",
+    "sortOrder": 70,
+    "defaultLayout": {
+      "themeColor": "#18181b",
+      "textColor": "#1e293b",
+      "secondaryColor": "#64748b",
+      "backgroundColor": "#ffffff",
+      "fontKey": "sans",
+      "baseFontSize": 14,
+      "lineHeight": 1.6,
+      "pagePadding": 14,
+      "sectionSpacing": 16,
+      "paragraphSpacing": 16,
+      "sectionTitleSpacing": 12,
+      "headerSize": 18,
+      "subheaderSize": 16,
+      "basicAlignment": "left",
+      "photo": {
+        "visible": true,
+        "width": 90,
+        "height": 120,
+        "borderRadius": 0
+      },
+      "columns": [
+        {
+          "id": "main",
+          "sectionIds": [
+            "skills",
+            "experience",
+            "projects",
+            "education",
+            "selfEvaluation",
+            "certificates"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "910000000000000008",
+    "templateKey": "editorial",
+    "templateVersion": 1,
+    "schemaVersion": 1,
+    "name": "Editorial",
+    "description": "高端画报风模板，大号精美衬线体与窄体无衬线的完美结合，附带专属侧边时光轴设计，极具奢华感。",
+    "status": "PUBLISHED",
+    "sortOrder": 80,
+    "defaultLayout": {
+      "themeColor": "#000000",
+      "textColor": "#1a1a1a",
+      "secondaryColor": "#666666",
+      "backgroundColor": "#FFFFFF",
+      "fontKey": "sans",
+      "baseFontSize": 14,
+      "lineHeight": 1.6,
+      "pagePadding": 36,
+      "sectionSpacing": 32,
+      "paragraphSpacing": 16,
+      "sectionTitleSpacing": 12,
+      "headerSize": 18,
+      "subheaderSize": 16,
+      "basicAlignment": "left",
+      "photo": {
+        "visible": true,
+        "width": 90,
+        "height": 120,
+        "borderRadius": 0
+      },
+      "columns": [
+        {
+          "id": "main",
+          "sectionIds": [
+            "skills",
+            "experience",
+            "projects",
+            "education",
+            "selfEvaluation",
+            "certificates"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "910000000000000009",
+    "templateKey": "swiss",
+    "templateVersion": 1,
+    "schemaVersion": 1,
+    "name": "瑞士美学",
+    "description": "极具艺术感的包豪斯国际排版，超粗字重对比与几何色块点缀，彰显理性与高级",
+    "status": "PUBLISHED",
+    "sortOrder": 90,
+    "defaultLayout": {
+      "themeColor": "#0f172a",
+      "textColor": "#0f172a",
+      "secondaryColor": "#64748b",
+      "backgroundColor": "#ffffff",
+      "fontKey": "sans",
+      "baseFontSize": 14,
+      "lineHeight": 1.6,
+      "pagePadding": 36,
+      "sectionSpacing": 36,
+      "paragraphSpacing": 20,
+      "sectionTitleSpacing": 12,
+      "headerSize": 18,
+      "subheaderSize": 16,
+      "basicAlignment": "left",
+      "photo": {
+        "visible": true,
+        "width": 90,
+        "height": 120,
+        "borderRadius": 0
+      },
+      "columns": [
+        {
+          "id": "main",
+          "sectionIds": [
+            "skills",
+            "experience",
+            "projects",
+            "education",
+            "selfEvaluation",
+            "certificates"
+          ]
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,36 @@
+# Nacos Data ID: codekin-common.yml; Group: CODEKIN; 类型: YAML。
+# 地址、账号、密码和密钥由各服务的运行环境提供。
+spring:
+  cloud:
+    nacos:
+      discovery:
+        # 本地 Java 服务同机运行时使用 127.0.0.1；跨主机或容器部署时改为可达地址。
+        ip: ${CODEKIN_NACOS_DISCOVERY_IP:}
+  data:
+    redis:
+      host: ${CODEKIN_REDIS_HOST}
+      port: ${CODEKIN_REDIS_PORT:6379}
+      username: ${CODEKIN_REDIS_USERNAME:default}
+      password: ${CODEKIN_REDIS_PASSWORD}
+
+codekin:
+  security:
+    jwt:
+      secret-base64: ${CODEKIN_JWT_SECRET_BASE64}
+      issuer: codekin
+      access-ttl: 30m
+      refresh-idle-ttl: 7d
+      session-max-lifetime: 30d
+    gateway-context:
+      secret-base64: ${CODEKIN_GATEWAY_CONTEXT_SECRET_BASE64}
+      max-age: 30s
+      public-endpoints:
+        - POST /api/auth/captcha/slider/generate
+        - POST /api/auth/captcha/slider/check
+        - POST /api/auth/password/login
+        - POST /api/auth/sms/login/send
+        - POST /api/auth/sms/login
+        - POST /api/auth/email/login/send
+        - POST /api/auth/email/login
+        - POST /api/auth/refresh
+        - GET /api/users/{userId:[0-9]+}

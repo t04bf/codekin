@@ -1,0 +1,13 @@
+# 仅保留连接 Nacos 的引导配置；内容服务配置在配置中心维护。
+spring:
+  application:
+    name: codekin-content
+  config:
+    import:
+      - "nacos:codekin-common.yml?group=CODEKIN&refreshEnabled=false"
+      - "nacos:codekin-content.yml?group=CODEKIN&refreshEnabled=false"
+  cloud:
+    nacos:
+      server-addr: ${CODEKIN_NACOS_SERVER_ADDR:localhost:8848}
+      username: ${CODEKIN_NACOS_USERNAME:nacos}
+      password: ${CODEKIN_NACOS_PASSWORD}

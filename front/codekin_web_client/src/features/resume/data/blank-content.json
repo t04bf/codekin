@@ -1,0 +1,102 @@
+{
+  "basic": {
+    "name": "",
+    "title": "",
+    "email": "",
+    "phone": "",
+    "location": "",
+    "birthDate": "",
+    "employmentStatus": "",
+    "photoFileId": null,
+    "visible": true,
+    "fieldOrder": [
+      {
+        "key": "name",
+        "visible": true
+      },
+      {
+        "key": "title",
+        "visible": true
+      },
+      {
+        "key": "email",
+        "visible": true
+      },
+      {
+        "key": "phone",
+        "visible": true
+      },
+      {
+        "key": "location",
+        "visible": true
+      },
+      {
+        "key": "birthDate",
+        "visible": true
+      },
+      {
+        "key": "employmentStatus",
+        "visible": true
+      }
+    ],
+    "customFields": []
+  },
+  "sections": [
+    {
+      "id": "skills",
+      "type": "RICH_TEXT",
+      "title": "专业技能",
+      "visible": true,
+      "items": [],
+      "customFields": [],
+      "content": {
+        "type": "doc",
+        "content": []
+      }
+    },
+    {
+      "id": "experience",
+      "type": "EXPERIENCE",
+      "title": "工作经历",
+      "visible": true,
+      "items": [],
+      "customFields": []
+    },
+    {
+      "id": "projects",
+      "type": "PROJECT",
+      "title": "项目经历",
+      "visible": true,
+      "items": [],
+      "customFields": []
+    },
+    {
+      "id": "education",
+      "type": "EDUCATION",
+      "title": "教育背景",
+      "visible": true,
+      "items": [],
+      "customFields": []
+    },
+    {
+      "id": "selfEvaluation",
+      "type": "RICH_TEXT",
+      "title": "自我评价",
+      "visible": true,
+      "items": [],
+      "customFields": [],
+      "content": {
+        "type": "doc",
+        "content": []
+      }
+    },
+    {
+      "id": "certificates",
+      "type": "CERTIFICATE",
+      "title": "证书荣誉",
+      "visible": true,
+      "items": [],
+      "customFields": []
+    }
+  ]
+}

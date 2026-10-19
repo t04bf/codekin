@@ -1,0 +1,2 @@
+org.springframework.boot.EnvironmentPostProcessor=\
+org.ninestick.codekin.dubbo.config.DubboJsonEnvironmentPostProcessor

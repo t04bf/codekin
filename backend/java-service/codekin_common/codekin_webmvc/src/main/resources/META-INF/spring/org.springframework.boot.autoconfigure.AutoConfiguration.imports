@@ -1,0 +1,2 @@
+org.ninestick.codekin.webmvc.WebMvcExceptionAutoConfiguration
+org.ninestick.codekin.webmvc.GatewayIdentityWebMvcAutoConfiguration

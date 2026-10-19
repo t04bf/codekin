@@ -1,0 +1,1 @@
+codekin-rpc-result-consumer=org.ninestick.codekin.dubbo.filter.RpcResultConsumerFilter

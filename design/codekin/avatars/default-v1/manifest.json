@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "avatars": [
+    {
+      "id": "codekin-avatar-01",
+      "name": "暖橙眨眼",
+      "file": "avatar-01-wink.png",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "id": "codekin-avatar-02",
+      "name": "森林绿眼镜",
+      "file": "avatar-02-glasses.png",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "id": "codekin-avatar-03",
+      "name": "青绿欢笑",
+      "file": "avatar-03-laugh.png",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "id": "codekin-avatar-04",
+      "name": "金黄星星",
+      "file": "avatar-04-star.png",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "id": "codekin-avatar-05",
+      "name": "蓝色耳机",
+      "file": "avatar-05-headphones.png",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "id": "codekin-avatar-06",
+      "name": "紫色安静",
+      "file": "avatar-06-calm.png",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "id": "codekin-avatar-07",
+      "name": "粉色开心",
+      "file": "avatar-07-blush.png",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "id": "codekin-avatar-08",
+      "name": "浅绿好奇",
+      "file": "avatar-08-curious.png",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "id": "codekin-avatar-09",
+      "name": "棕色帽子",
+      "file": "avatar-09-cap.png",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "id": "codekin-avatar-10",
+      "name": "杏色墨镜",
+      "file": "avatar-10-sunglasses.png",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "id": "codekin-avatar-11",
+      "name": "深蓝雀斑",
+      "file": "avatar-11-freckles.png",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "id": "codekin-avatar-12",
+      "name": "珊瑚闪光",
+      "file": "avatar-12-sparkle.png",
+      "width": 512,
+      "height": 512
+    }
+  ]
+}

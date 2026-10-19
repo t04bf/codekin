@@ -1,0 +1,318 @@
+{
+  "basic": {
+    "name": "林知远",
+    "title": "Java 后端工程师",
+    "email": "lin@example.com",
+    "phone": "138 0000 0000",
+    "location": "上海",
+    "birthDate": "",
+    "employmentStatus": "在职 · 寻找新机会",
+    "photoFileId": null,
+    "visible": true,
+    "fieldOrder": [
+      {
+        "key": "name",
+        "visible": true
+      },
+      {
+        "key": "title",
+        "visible": true
+      },
+      {
+        "key": "email",
+        "visible": true
+      },
+      {
+        "key": "phone",
+        "visible": true
+      },
+      {
+        "key": "location",
+        "visible": true
+      },
+      {
+        "key": "birthDate",
+        "visible": true
+      },
+      {
+        "key": "employmentStatus",
+        "visible": true
+      }
+    ],
+    "customFields": [
+      {
+        "id": "blog",
+        "label": "个人网站",
+        "type": "LINK",
+        "value": "https://example.com",
+        "showLabel": true,
+        "visible": true
+      }
+    ]
+  },
+  "sections": [
+    {
+      "id": "skills",
+      "type": "RICH_TEXT",
+      "title": "专业技能",
+      "visible": true,
+      "items": [],
+      "customFields": [],
+      "content": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "bulletList",
+            "content": [
+              {
+                "type": "listItem",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "熟悉 Java、Spring Boot、MyBatis-Plus，注重接口边界与可维护性。"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "掌握 MySQL、Redis 与消息队列，具备性能分析及故障排查经验。"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "experience",
+      "type": "EXPERIENCE",
+      "title": "工作经历",
+      "visible": true,
+      "items": [
+        {
+          "id": "work-1",
+          "company": "示例科技有限公司",
+          "position": "后端开发工程师",
+          "startDate": "2023-07",
+          "endDate": null,
+          "ongoing": true,
+          "visible": true,
+          "description": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "bulletList",
+                "content": [
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "负责用户与业务平台开发，参与需求分析、接口设计和上线验证。"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "通过批量查询与索引调整优化列表接口，补充关键业务自动化测试。"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "customFields": []
+        }
+      ],
+      "customFields": []
+    },
+    {
+      "id": "projects",
+      "type": "PROJECT",
+      "title": "项目经历",
+      "visible": true,
+      "items": [
+        {
+          "id": "project-1",
+          "name": "Codekin 求职辅助平台",
+          "role": "核心开发",
+          "startDate": "2026-01",
+          "endDate": null,
+          "ongoing": true,
+          "visible": true,
+          "link": "https://example.com/project",
+          "linkLabel": "项目介绍",
+          "description": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "bulletList",
+                "content": [
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "设计用户认证、文件存储与简历模块，支持可配置模板和私有数据访问。"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "统一接口契约、错误处理与版本控制，提升多模块协作效率。"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "customFields": [
+            {
+              "id": "tech",
+              "label": "技术栈",
+              "type": "TEXT",
+              "value": "Spring Boot / Vue / MySQL",
+              "visible": true,
+              "showLabel": true
+            }
+          ]
+        }
+      ],
+      "customFields": []
+    },
+    {
+      "id": "education",
+      "type": "EDUCATION",
+      "title": "教育背景",
+      "visible": true,
+      "items": [
+        {
+          "id": "edu-1",
+          "school": "示例大学",
+          "major": "计算机科学与技术",
+          "degree": "本科",
+          "startDate": "2019-09",
+          "endDate": "2023-06",
+          "visible": true,
+          "description": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "bulletList",
+                "content": [
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "主修数据结构、计算机网络、数据库原理与软件工程。"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "customFields": []
+        }
+      ],
+      "customFields": []
+    },
+    {
+      "id": "selfEvaluation",
+      "type": "RICH_TEXT",
+      "title": "自我评价",
+      "visible": true,
+      "items": [],
+      "customFields": [],
+      "content": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "bulletList",
+            "content": [
+              {
+                "type": "listItem",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "重视用户体验和工程质量，习惯用可验证的结果推进工作。"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "certificates",
+      "type": "CERTIFICATE",
+      "title": "证书荣誉",
+      "visible": true,
+      "items": [
+        {
+          "id": "cert-1",
+          "title": "软件设计师",
+          "subtitle": "资格证书",
+          "dateRange": "2024",
+          "visible": true,
+          "customFields": []
+        }
+      ],
+      "customFields": []
+    }
+  ]
+}

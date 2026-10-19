@@ -1,0 +1,3 @@
+# Nacos Data ID: codekin-content.yml; Group: CODEKIN; 类型: YAML。
+server:
+  port: ${CODEKIN_CONTENT_PORT:8084}

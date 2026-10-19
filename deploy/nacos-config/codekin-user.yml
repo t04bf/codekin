@@ -1,0 +1,113 @@
+# Nacos Data ID: codekin-user.yml; Group: CODEKIN; 类型: YAML。
+server:
+  port: ${CODEKIN_USER_PORT:8081}
+
+spring:
+  mail:
+    host: ${CODEKIN_MAIL_HOST:smtp.163.com}
+    port: ${CODEKIN_MAIL_PORT:465}
+    username: ${CODEKIN_MAIL_USERNAME:}
+    password: ${CODEKIN_MAIL_AUTH_CODE:}
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.ssl.enable: true
+      mail.smtp.connectiontimeout: 5000
+      mail.smtp.timeout: 5000
+      mail.smtp.writetimeout: 5000
+  datasource:
+    url: jdbc:mysql://${CODEKIN_MYSQL_HOST}:${CODEKIN_MYSQL_PORT:3306}/${CODEKIN_MYSQL_DATABASE:codekin}?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+    username: ${CODEKIN_MYSQL_USER}
+    password: ${CODEKIN_MYSQL_PASSWORD}
+    hikari:
+      connection-init-sql: SET time_zone = '+00:00'
+
+codekin:
+  captcha:
+    generate-limit: 30
+    generate-window: 1m
+  email:
+    from: ${CODEKIN_MAIL_USERNAME:}
+  sms:
+    region: ${CODEKIN_SMS_REGION:cn-shenzhen}
+    sign-name: ${CODEKIN_SMS_SIGN_NAME}
+    template-code: ${CODEKIN_SMS_TEMPLATE_CODE}
+  user:
+    # 稳定对象路径；浏览器展示链接由文件服务使用 public endpoint 短期签名。
+    avatar:
+      defaults:
+        - name: 暖橙眨眼
+          object-key: uploads/avatar/default/avatar-01-wink.png
+        - name: 森林绿眼镜
+          object-key: uploads/avatar/default/avatar-02-glasses.png
+        - name: 青绿欢笑
+          object-key: uploads/avatar/default/avatar-03-laugh.png
+        - name: 金黄星星
+          object-key: uploads/avatar/default/avatar-04-star.png
+        - name: 蓝色耳机
+          object-key: uploads/avatar/default/avatar-05-headphones.png
+        - name: 紫色安静
+          object-key: uploads/avatar/default/avatar-06-calm.png
+        - name: 粉色开心
+          object-key: uploads/avatar/default/avatar-07-blush.png
+        - name: 浅绿好奇
+          object-key: uploads/avatar/default/avatar-08-curious.png
+        - name: 棕色帽子
+          object-key: uploads/avatar/default/avatar-09-cap.png
+        - name: 杏色墨镜
+          object-key: uploads/avatar/default/avatar-10-sunglasses.png
+        - name: 深蓝雀斑
+          object-key: uploads/avatar/default/avatar-11-freckles.png
+        - name: 珊瑚闪光
+          object-key: uploads/avatar/default/avatar-12-sparkle.png
+    email:
+      code-hash-secret: ${CODEKIN_EMAIL_CODE_HASH_SECRET:}
+      valid-time: 5m
+      send-interval: 60s
+      daily-address-limit: 20
+      daily-ip-limit: 100
+      verify-attempt-limit: 5
+    sms:
+      code-hash-secret: ${CODEKIN_SMS_CODE_HASH_SECRET}
+      daily-phone-limit: 50
+      daily-ip-limit: 100
+      login:
+        valid-time: 5m
+        send-interval: 60s
+        verify-attempt-limit: 5
+      bind:
+        valid-time: 5m
+        send-interval: 60s
+        verify-attempt-limit: 5
+
+# 天爱组件的 expire / secondary.expire 单位为毫秒。
+captcha:
+  prefix: codekin:captcha:image
+  init-default-resource: true
+  local-cache-enabled: false
+  expire:
+    default: 120000
+    SLIDER: 120000
+  secondary:
+    # 必须启用：滑块通过后生成一次性凭据，发送登录验证码前由用户服务消费。
+    enabled: true
+    expire: 120000
+    key-prefix: codekin:captcha:verified
+
+# 文件核验走内部 Dubbo；与 HTTP 服务发现共享 Nacos，使用单独的服务组。
+dubbo:
+  application:
+    name: codekin-user
+    qos-enable: false
+    serialize-check-status: STRICT
+  registry:
+    address: nacos://${CODEKIN_NACOS_SERVER_ADDR:127.0.0.1:8848}
+    username: ${CODEKIN_NACOS_USERNAME:nacos}
+    password: ${CODEKIN_NACOS_PASSWORD}
+    group: CODEKIN_DUBBO
+    register-mode: interface
+    use-as-config-center: false
+    use-as-metadata-center: false
+  consumer:
+    check: false
+    timeout: 10000
+    retries: 0

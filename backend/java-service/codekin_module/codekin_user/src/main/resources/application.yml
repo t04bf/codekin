@@ -1,0 +1,13 @@
+# 仅保留连接配置中心所必需的引导信息；业务配置见 deploy/nacos-config。
+spring:
+  application:
+    name: codekin-user
+  config:
+    import:
+      - "nacos:codekin-common.yml?group=CODEKIN&refreshEnabled=false"
+      - "nacos:codekin-user.yml?group=CODEKIN&refreshEnabled=false"
+  cloud:
+    nacos:
+      server-addr: ${CODEKIN_NACOS_SERVER_ADDR:localhost:8848}
+      username: ${CODEKIN_NACOS_USERNAME:nacos}
+      password: ${CODEKIN_NACOS_PASSWORD}

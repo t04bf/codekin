@@ -1,0 +1,681 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://codekin.local/schemas/resume-document",
+  "title": "ResumeDocument",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1
+    },
+    "content": {
+      "$ref": "#/$defs/content"
+    },
+    "layout": {
+      "$ref": "#/$defs/layout"
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "content",
+    "layout"
+  ],
+  "$defs": {
+    "customField": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "pattern": "^[A-Za-z0-9_-]+$"
+        },
+        "label": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "value": {
+          "type": "string",
+          "maxLength": 2048
+        },
+        "icon": {
+          "type": "string",
+          "maxLength": 80
+        },
+        "custom": {
+          "type": "boolean"
+        },
+        "displayLabel": {
+          "type": "boolean"
+        },
+        "valueType": {
+          "enum": [
+            "text",
+            "link"
+          ]
+        },
+        "rightSpacing": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "visible": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "value"
+      ]
+    },
+    "education": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "pattern": "^[A-Za-z0-9_-]+$"
+        },
+        "school": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "major": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "degree": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "startDate": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "endDate": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "gpa": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 32768
+        },
+        "visible": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "school",
+        "major",
+        "degree",
+        "startDate",
+        "endDate"
+      ]
+    },
+    "experience": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "pattern": "^[A-Za-z0-9_-]+$"
+        },
+        "company": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "position": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "date": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "details": {
+          "type": "string",
+          "maxLength": 32768
+        },
+        "visible": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "company",
+        "position",
+        "date",
+        "details"
+      ]
+    },
+    "project": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "pattern": "^[A-Za-z0-9_-]+$"
+        },
+        "name": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "role": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "date": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 32768
+        },
+        "link": {
+          "type": "string",
+          "maxLength": 2048,
+          "pattern": "^(|https?://[^\\s]+|mailto:[^\\s]+|tel:[^\\s]+)$"
+        },
+        "linkLabel": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "visible": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "role",
+        "date",
+        "description"
+      ]
+    },
+    "customItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "pattern": "^[A-Za-z0-9_-]+$"
+        },
+        "title": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "subtitle": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "dateRange": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 32768
+        },
+        "visible": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "subtitle",
+        "dateRange",
+        "description"
+      ]
+    },
+    "certificate": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "pattern": "^[A-Za-z0-9_-]+$"
+        },
+        "url": {
+          "type": "string",
+          "maxLength": 262144,
+          "pattern": "^(|/resume-avatar\\.png|https?://[^\\s]+|data:image/(png|jpeg|webp);base64,[A-Za-z0-9+/=]+)$"
+        },
+        "width": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 100
+        }
+      },
+      "required": [
+        "id",
+        "url",
+        "width"
+      ]
+    },
+    "fieldOrder": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "pattern": "^[A-Za-z0-9_-]+$"
+        },
+        "key": {
+          "enum": [
+            "name",
+            "title",
+            "birthDate",
+            "email",
+            "phone",
+            "location",
+            "employementStatus"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "type": {
+          "enum": [
+            "date",
+            "textarea",
+            "text",
+            "editor"
+          ]
+        },
+        "visible": {
+          "type": "boolean"
+        },
+        "custom": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "key",
+        "label",
+        "visible"
+      ]
+    },
+    "menuSection": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "pattern": "^[A-Za-z0-9_-]+$"
+        },
+        "title": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "icon": {
+          "type": "string",
+          "maxLength": 80
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "order": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "icon",
+        "enabled",
+        "order"
+      ]
+    },
+    "photoConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "width": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 500
+        },
+        "height": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 500
+        },
+        "aspectRatio": {
+          "enum": [
+            "1:1",
+            "4:3",
+            "3:4",
+            "16:9",
+            "custom"
+          ]
+        },
+        "borderRadius": {
+          "enum": [
+            "none",
+            "medium",
+            "full",
+            "custom"
+          ]
+        },
+        "customBorderRadius": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 500
+        },
+        "visible": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "width",
+        "height",
+        "aspectRatio",
+        "borderRadius",
+        "customBorderRadius"
+      ]
+    },
+    "basic": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "title": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "birthDate": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "email": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "phone": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "location": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "employementStatus": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "photo": {
+          "type": "string",
+          "maxLength": 2048,
+          "pattern": "^(|/resume-avatar\\.png|https?://[^\\s]+)$"
+        },
+        "photoFileId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[1-9][0-9]{0,18}$"
+        },
+        "customFields": {
+          "type": "array",
+          "maxItems": 50,
+          "items": {
+            "$ref": "#/$defs/customField"
+          }
+        },
+        "githubUseName": {
+          "type": "string",
+          "maxLength": 80
+        },
+        "githubContributionsVisible": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name",
+        "title",
+        "birthDate",
+        "email",
+        "phone",
+        "location",
+        "employementStatus",
+        "photo",
+        "photoFileId",
+        "customFields",
+        "githubUseName",
+        "githubContributionsVisible"
+      ]
+    },
+    "content": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "basic": {
+          "$ref": "#/$defs/basic"
+        },
+        "education": {
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "$ref": "#/$defs/education"
+          }
+        },
+        "experience": {
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "$ref": "#/$defs/experience"
+          }
+        },
+        "projects": {
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "$ref": "#/$defs/project"
+          }
+        },
+        "certificates": {
+          "type": "array",
+          "maxItems": 20,
+          "items": {
+            "$ref": "#/$defs/certificate"
+          }
+        },
+        "customData": {
+          "type": "object",
+          "maxProperties": 30,
+          "propertyNames": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          },
+          "additionalProperties": {
+            "type": "array",
+            "maxItems": 100,
+            "items": {
+              "$ref": "#/$defs/customItem"
+            }
+          }
+        },
+        "skillContent": {
+          "type": "string",
+          "maxLength": 32768
+        },
+        "selfEvaluationContent": {
+          "type": "string",
+          "maxLength": 32768
+        }
+      },
+      "required": [
+        "basic",
+        "education",
+        "experience",
+        "projects",
+        "certificates",
+        "customData",
+        "skillContent",
+        "selfEvaluationContent"
+      ]
+    },
+    "layout": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "globalSettings": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "themeColor": {
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$"
+            },
+            "fontFamily": {
+              "type": "string",
+              "maxLength": 100
+            },
+            "baseFontSize": {
+              "type": "number",
+              "minimum": 8,
+              "maximum": 32
+            },
+            "pagePadding": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "paragraphSpacing": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "lineHeight": {
+              "type": "number",
+              "minimum": 1,
+              "maximum": 3
+            },
+            "sectionSpacing": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "sectionTitleSpacing": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "headerSize": {
+              "type": "number",
+              "minimum": 8,
+              "maximum": 48
+            },
+            "subheaderSize": {
+              "type": "number",
+              "minimum": 8,
+              "maximum": 48
+            },
+            "useIconMode": {
+              "type": "boolean"
+            },
+            "centerSubtitle": {
+              "type": "boolean"
+            },
+            "flexibleHeaderLayout": {
+              "type": "boolean"
+            },
+            "autoOnePage": {
+              "type": "boolean"
+            },
+            "pageBreakLinesVisible": {
+              "type": "boolean"
+            }
+          },
+          "required": []
+        },
+        "menuSections": {
+          "type": "array",
+          "maxItems": 50,
+          "items": {
+            "$ref": "#/$defs/menuSection"
+          }
+        },
+        "basic": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "photoConfig": {
+              "$ref": "#/$defs/photoConfig"
+            },
+            "layout": {
+              "enum": [
+                "left",
+                "center",
+                "right"
+              ]
+            },
+            "icons": {
+              "type": "object",
+              "maxProperties": 50,
+              "propertyNames": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80,
+                "pattern": "^[A-Za-z0-9_-]+$"
+              },
+              "additionalProperties": {
+                "type": "string",
+                "maxLength": 80
+              }
+            },
+            "fieldOrder": {
+              "type": "array",
+              "maxItems": 20,
+              "items": {
+                "$ref": "#/$defs/fieldOrder"
+              }
+            }
+          },
+          "required": [
+            "photoConfig",
+            "icons"
+          ]
+        }
+      },
+      "required": [
+        "globalSettings",
+        "menuSections",
+        "basic"
+      ]
+    }
+  }
+}

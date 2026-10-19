@@ -1,0 +1,53 @@
+# Nacos Data ID: codekin-file.yml; Group: CODEKIN; 类型: YAML。
+server:
+  port: ${CODEKIN_FILE_PORT:8083}
+
+spring:
+  datasource:
+    url: jdbc:mysql://${CODEKIN_MYSQL_HOST}:${CODEKIN_MYSQL_PORT:3306}/${CODEKIN_MYSQL_DATABASE:codekin}?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+    username: ${CODEKIN_MYSQL_USER}
+    password: ${CODEKIN_MYSQL_PASSWORD}
+    hikari:
+      connection-init-sql: SET time_zone = '+00:00'
+
+codekin:
+  file:
+    storage:
+      endpoint: ${CODEKIN_STORAGE_ENDPOINT:http://127.0.0.1:8333}
+      public-endpoint: ${CODEKIN_STORAGE_PUBLIC_ENDPOINT:http://127.0.0.1:8333}
+      region: ${CODEKIN_STORAGE_REGION:us-east-1}
+      bucket: ${CODEKIN_STORAGE_BUCKET:codekin}
+      access-key: ${CODEKIN_STORAGE_ACCESS_KEY}
+      secret-key: ${CODEKIN_STORAGE_SECRET_KEY}
+      signature-ttl: 5m
+      confirmation-ttl: 15m
+      access-ttl: 1h
+      signature-window: 10m
+      allowed-origins: ${CODEKIN_STORAGE_ALLOWED_ORIGINS:http://127.0.0.1:5173,http://localhost:5173,http://127.0.0.1:5174,http://localhost:5174}
+      max-concurrent-image-processing: 2
+      cleanup-interval: 60000
+      cleanup-batch-size: 100
+
+dubbo:
+  application:
+    name: codekin-file
+    qos-enable: false
+    serialize-check-status: STRICT
+  registry:
+    address: nacos://${CODEKIN_NACOS_SERVER_ADDR:127.0.0.1:8848}
+    username: ${CODEKIN_NACOS_USERNAME:nacos}
+    password: ${CODEKIN_NACOS_PASSWORD}
+    group: CODEKIN_DUBBO
+    register-mode: interface
+    use-as-config-center: false
+    use-as-metadata-center: false
+  protocol:
+    name: dubbo
+    # 本地各服务同机运行，避免代理/VPN 网卡被自动选为注册地址。
+    host: ${CODEKIN_DUBBO_HOST:127.0.0.1}
+    port: ${CODEKIN_FILE_DUBBO_PORT:20883}
+    serialization: fastjson2
+  provider:
+    token: ${CODEKIN_DUBBO_FILE_TOKEN}
+    timeout: 10000
+    retries: 0

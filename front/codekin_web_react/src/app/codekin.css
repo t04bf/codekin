@@ -1,0 +1,12 @@
+.codekin-theme {
+  --background: 75 18% 96%;
+  --foreground: 156 28% 18%;
+  --card: 0 0% 100%;
+  --primary: 156 38% 23%;
+  --primary-foreground: 0 0% 100%;
+  --ring: 156 38% 23%;
+  --muted-foreground: 145 7% 45%;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+.codekin-theme h1, .codekin-theme h2, .codekin-theme h3, .codekin-theme h4 { font-family: inherit; }
+html, body, #root { min-width: 320px; min-height: 100%; }
